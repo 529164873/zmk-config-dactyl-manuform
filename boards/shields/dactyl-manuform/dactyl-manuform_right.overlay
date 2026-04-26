@@ -1,0 +1,37 @@
+/*
+ * Dactyl Manuform 6x7 - right half
+ *
+ * Wired for a SuperMini nRF52840 (nice!nano v2 clone).
+ * Rows mirror the left half. col-gpios placeholders also mirror the left;
+ * update them to match your actual right-hand wiring if different.
+ *
+ *   Rows: P0.22, P0.24, P1.00, P0.11, P1.04, P1.06
+ *   Cols: P0.31, P0.29, P0.02, P1.15, P1.13, P1.11, P0.10  (TODO: verify)
+ */
+
+#include "dactyl-manuform.dtsi"
+
+&default_transform {
+    col-offset = <7>;
+};
+
+&kscan0 {
+    row-gpios
+        = <&gpio0 22 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // row 0  P0.22
+        , <&gpio0 24 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // row 1  P0.24
+        , <&gpio1  0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // row 2  P1.00
+        , <&gpio0 11 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // row 3  P0.11
+        , <&gpio1  4 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // row 4  P1.04
+        , <&gpio1  6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // row 5  P1.06
+        ;
+
+    col-gpios
+        = <&gpio0 31 GPIO_ACTIVE_HIGH>  // col 0  P0.31
+        , <&gpio0 29 GPIO_ACTIVE_HIGH>  // col 1  P0.29
+        , <&gpio0  2 GPIO_ACTIVE_HIGH>  // col 2  P0.02
+        , <&gpio1 15 GPIO_ACTIVE_HIGH>  // col 3  P1.15
+        , <&gpio1 13 GPIO_ACTIVE_HIGH>  // col 4  P1.13
+        , <&gpio1 11 GPIO_ACTIVE_HIGH>  // col 5  P1.11
+        , <&gpio0 10 GPIO_ACTIVE_HIGH>  // col 6  P0.10
+        ;
+};
