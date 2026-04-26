@@ -9,7 +9,7 @@
  *   Cols: P0.31, P0.29, P0.02, P1.15, P1.13, P1.11, P0.10
  */
 
-#include "dactyl-manuform.dtsi"
+#include "dactyl_manuform.dtsi"
 
 &kscan0 {
     row-gpios
