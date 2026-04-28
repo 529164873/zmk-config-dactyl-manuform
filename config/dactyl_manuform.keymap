@@ -93,20 +93,20 @@
 
         // ============================================================
         //  ADJUST  -  Bluetooth / output / firmware / layout toggle
-        //  R0 |BT_CLR| BT0 | BT1 | BT2 | BT3 | BT4 |RESET || DVK | QWR | GAM |  -  |  -  |  -  | RESET |
+        //  R0 |BT_CLR| BT0 | BT1 | BT2 | BT3 | BT4 |RESET ||  -  |  -  |  -  |  -  |  -  |  -  | RESET |
         //  R1 |USB   | BLE |  -  |  -  |  -  |  -  |BOOT  ||  -  |  -  |  -  |  -  |  -  |  -  | BOOT  |
-        //  R2 |  -   |  -  |  -  |  -  |  -  |  -  | DVK  ||  -  |  -  |  -  |  -  |  -  |  -  |  -    |
-        //  R3 |  -   |  -  |  -  |  -  |  -  |  -  | QWR  ||  -  |  -  |  -  |  -  |  -  |  -  |  -    |
+        //  R2 |  -   |  -  |  -  |  -  |  -  |  -  |  -   ||  -  |  -  |  -  |  -  |  -  |  -  |  -    |
+        //  R3 |  -   | DVK | QWR | GAM |  -  |  -  |  -   ||  -  |  -  |  -  |  -  |  -  |  -  |  -    |
         //  rest = trans
         // ============================================================
         adjust_layer {
             bindings = <
-&bt BT_CLR    &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &sys_reset      &to DEF  &to QWR  &to GAM &trans  &trans  &trans  &sys_reset
-&out OUT_USB  &out OUT_BLE  &trans        &trans        &trans        &trans        &bootloader     &trans  &trans  &trans  &trans  &trans  &trans  &bootloader
-&trans        &trans        &trans        &trans        &trans        &trans        &to DEF         &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans        &trans        &trans        &trans        &trans        &trans        &to QWR         &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans        &trans        &trans        &trans        &trans        &trans        &trans          &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&none         &none         &none         &none         &trans        &trans        &none           &none   &trans  &trans  &none   &none   &none   &none
+&bt BT_CLR    &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &sys_reset      &trans   &trans   &trans  &trans  &trans  &trans  &sys_reset
+&out OUT_USB  &out OUT_BLE  &trans        &trans        &trans        &trans        &bootloader     &trans   &trans   &trans  &trans  &trans  &trans  &bootloader
+&trans        &trans        &trans        &trans        &trans        &trans        &trans          &trans   &trans   &trans  &trans  &trans  &trans  &trans
+&trans        &to DEF       &to QWR       &to GAM       &trans        &trans        &trans          &trans   &trans   &trans  &trans  &trans  &trans  &trans
+&trans        &trans        &trans        &trans        &trans        &trans        &trans          &trans   &trans   &trans  &trans  &trans  &trans  &trans
+&none         &none         &none         &none         &trans        &trans        &none           &none    &trans   &trans  &none   &none   &none   &none
             >;
         };
 
