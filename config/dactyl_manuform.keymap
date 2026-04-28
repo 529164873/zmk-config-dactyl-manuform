@@ -100,16 +100,18 @@
 
         // ============================================================
         //  ADJUST  -  Bluetooth / output / firmware / layout toggle
-        //  R0 |BT_CLR| BT0 | BT1 | BT2 | BT3 | BT4 |  -  || DVK | QWR |  -  |  -  |  -  |  -  | RESET |
-        //  R1 |USB   | BLE |  -  |  -  |  -  |  -  |  -  ||  -  |  -  |  -  |  -  |  -  |  -  | BOOT  |
+        //  R0 |BT_CLR| BT0 | BT1 | BT2 | BT3 | BT4 |RESET || DVK | QWR |  -  |  -  |  -  |  -  | RESET |
+        //  R1 |USB   | BLE |  -  |  -  |  -  |  -  |BOOT  ||  -  |  -  |  -  |  -  |  -  |  -  | BOOT  |
+        //  R2 |  -   |  -  |  -  |  -  |  -  |  -  | DVK  ||  -  |  -  |  -  |  -  |  -  |  -  |  -    |
+        //  R3 |  -   |  -  |  -  |  -  |  -  |  -  | QWR  ||  -  |  -  |  -  |  -  |  -  |  -  |  -    |
         //  rest = trans
         // ============================================================
         adjust_layer {
             bindings = <
-&bt BT_CLR    &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &trans          &to DEF  &to QWR  &trans  &trans  &trans  &trans  &sys_reset
-&out OUT_USB  &out OUT_BLE  &trans        &trans        &trans        &trans        &trans          &trans  &trans  &trans  &trans  &trans  &trans  &bootloader
-&trans        &trans        &trans        &trans        &trans        &trans        &trans          &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans        &trans        &trans        &trans        &trans        &trans        &trans          &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&bt BT_CLR    &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &sys_reset      &to DEF  &to QWR  &trans  &trans  &trans  &trans  &sys_reset
+&out OUT_USB  &out OUT_BLE  &trans        &trans        &trans        &trans        &bootloader     &trans  &trans  &trans  &trans  &trans  &trans  &bootloader
+&trans        &trans        &trans        &trans        &trans        &trans        &to DEF         &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans        &trans        &trans        &trans        &trans        &trans        &to QWR         &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &trans        &trans        &trans        &trans        &trans        &trans        &trans          &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &none         &none         &none         &none         &trans        &trans        &none           &none   &trans  &trans  &none   &none   &none   &none
             >;
