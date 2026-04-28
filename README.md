@@ -11,7 +11,7 @@ A wireless, split [Dactyl Manuform](https://github.com/abstracthat/dactyl-manufo
 | Case | Dactyl Manuform 6×7 (3-D printed) |
 | Controller (×2) | nice!nano v2 **or** SuperMini nRF52840 (pin-compatible clone) |
 | Switches | Any MX-compatible switch |
-| Diodes (×~80) | 1N4148, wired **COL2ROW** (anode on column wire, cathode on row wire) |
+| Diodes (×~80) | 1N4148, wired **COL2ROW** |
 | Connection | Wireless BLE split; left half is the central (connects via USB or BLE to the host) |
 
 Total key count: **~80 keys** (6 rows × 14 cols; row 5 only populates thumb positions at inner columns 4, 5, 8, 9).
