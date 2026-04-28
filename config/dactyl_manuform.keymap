@@ -54,7 +54,7 @@
 &kp PG_DN &kp A     &kp O     &kp E     &kp U     &kp I     &kp LCTRL           &kp K_APP   &kp D     &kp H     &kp T     &kp N     &kp S     &kp END
 &kp BSLH  &kp SEMI  &kp Q     &kp J     &kp K     &kp X     &kp LSHFT           &kp RCTRL   &kp B     &kp M     &kp W     &kp V     &kp Z     &kp FSLH
 &kp CAPS  &kp K_APP &kp UP    &kp DOWN  &kp TAB   &kp SPACE &mo RSE             &mo LWR     &kp SPACE &kp RET   &kp LEFT  &kp RIGHT &kp MINUS &kp EQUAL
-&none     &none     &none     &none     &kp LGUI  &mo ADJ   &none               &none       &kp LALT  &kp ESC   &none     &none     &none     &none
+&none     &none     &none     &none     &kp F13   &kp F14   &none               &none       &kp LALT  &kp ESC   &none     &none     &none     &none
             >;
         };
 
