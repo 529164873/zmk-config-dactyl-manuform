@@ -19,6 +19,7 @@
 #define RSE 2
 #define ADJ 3
 #define QWR 4
+#define GAM 5
 
 // Convenience macros for chord shortcuts
 #define VDESK_L  LC(LG(LEFT))    // Ctrl+Win+Left   (prev virtual desktop)
@@ -36,8 +37,8 @@
         //  R1 |PG_UP|  '  |  ,  |  .  |  P  |  Y  | VDESK_L|| VDESK_R  |  F  |  G  |  C  |  R  |  L  | HOME |
         //  R2 |PG_DN|  A  |  O  |  E  |  U  |  I  | LCTRL  || K_APP    |  D  |  H  |  T  |  N  |  S  | END  |
         //  R3 |  \  |  ;  |  Q  |  J  |  K  |  X  | LSHFT  || RCTRL    |  B  |  M  |  W  |  V  |  Z  |  /   |
-        //  R4 |CAPS |K_APP| UP  |DOWN | TAB | SPC |  RSE   ||  LWR     | SPC | RET | LEFT|RGHT |  -  |  =   |
-        //  R5 |  -  |  -  |  -  |  -  | GUI | ADJ |   -    ||   -      | ALT | ESC |  -  |  -  |  -  |  -   |
+        //  R4 |CAPS | ADJ | UP  |DOWN | TAB | SPC |  RSE   ||  LWR     | SPC | RET | LEFT|RGHT |  -  |  =   |
+        //  R5 |  -  |  -  |  -  |  -  | GUI | ALT |   -    ||   -      | ALT | ESC |  -  |  -  |  -  |  -   |
         // ============================================================
         default_layer {
             bindings = <
@@ -45,8 +46,8 @@
 &kp PG_UP &kp SQT   &kp COMMA &kp DOT   &kp P     &kp Y     &kp VDESK_L         &kp VDESK_R &kp F     &kp G     &kp C     &kp R     &kp L     &kp HOME
 &kp PG_DN &kp A     &kp O     &kp E     &kp U     &kp I     &kp LCTRL           &kp K_APP   &kp D     &kp H     &kp T     &kp N     &kp S     &kp END
 &kp BSLH  &kp SEMI  &kp Q     &kp J     &kp K     &kp X     &kp LSHFT           &kp RCTRL   &kp B     &kp M     &kp W     &kp V     &kp Z     &kp FSLH
-&kp CAPS  &kp K_APP &kp UP    &kp DOWN  &kp TAB   &kp SPACE &mo RSE             &mo LWR     &kp SPACE &kp RET   &kp LEFT  &kp RIGHT &kp MINUS &kp EQUAL
-&none     &none     &none     &none     &kp LGUI  &mo ADJ   &none               &none       &kp LALT  &kp ESC   &none     &none     &none     &none
+&kp CAPS  &mo ADJ   &kp UP    &kp DOWN  &kp TAB   &kp SPACE &mo RSE             &mo LWR     &kp SPACE &kp RET   &kp LEFT  &kp RIGHT &kp MINUS &kp EQUAL
+&none     &none     &none     &none     &kp LGUI  &kp LALT  &none               &none       &kp LALT  &kp ESC   &none     &none     &none     &none
             >;
         };
 
@@ -92,7 +93,7 @@
 
         // ============================================================
         //  ADJUST  -  Bluetooth / output / firmware / layout toggle
-        //  R0 |BT_CLR| BT0 | BT1 | BT2 | BT3 | BT4 |RESET || DVK | QWR |  -  |  -  |  -  |  -  | RESET |
+        //  R0 |BT_CLR| BT0 | BT1 | BT2 | BT3 | BT4 |RESET || DVK | QWR | GAM |  -  |  -  |  -  | RESET |
         //  R1 |USB   | BLE |  -  |  -  |  -  |  -  |BOOT  ||  -  |  -  |  -  |  -  |  -  |  -  | BOOT  |
         //  R2 |  -   |  -  |  -  |  -  |  -  |  -  | DVK  ||  -  |  -  |  -  |  -  |  -  |  -  |  -    |
         //  R3 |  -   |  -  |  -  |  -  |  -  |  -  | QWR  ||  -  |  -  |  -  |  -  |  -  |  -  |  -    |
@@ -100,7 +101,7 @@
         // ============================================================
         adjust_layer {
             bindings = <
-&bt BT_CLR    &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &sys_reset      &to DEF  &to QWR  &trans  &trans  &trans  &trans  &sys_reset
+&bt BT_CLR    &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &sys_reset      &to DEF  &to QWR  &to GAM &trans  &trans  &trans  &sys_reset
 &out OUT_USB  &out OUT_BLE  &trans        &trans        &trans        &trans        &bootloader     &trans  &trans  &trans  &trans  &trans  &trans  &bootloader
 &trans        &trans        &trans        &trans        &trans        &trans        &to DEF         &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &trans        &trans        &trans        &trans        &trans        &trans        &to QWR         &trans  &trans  &trans  &trans  &trans  &trans  &trans
@@ -126,6 +127,27 @@
 &trans    &kp Z     &kp X     &kp C     &kp V     &kp B     &trans              &trans      &kp N     &kp M     &kp COMMA &kp DOT   &kp FSLH  &trans
 &trans    &trans    &trans    &trans    &trans    &trans    &trans              &trans      &trans    &trans    &trans    &trans    &trans    &trans
 &none     &none     &none     &none     &trans    &trans    &none               &none       &trans    &trans    &none     &none     &none     &none
+            >;
+        };
+
+        // ============================================================
+        //  GAMING  -  Azeron-style left-hand cluster.
+        //  WASD diamond: W=R1C3, A=R2C2, S=R2C3, D=R2C4. Right half = trans.
+        //  R0 | ESC |  1  |  2  |  3  |  4  |  5  |  6   ||
+        //  R1 |  -  | TAB |  Q  |  W  |  E  |  R  |  T   ||
+        //  R2 |  -  |LSHFT|  A  |  S  |  D  |  F  |  G   ||
+        //  R3 |  -  |LCTRL|  Z  |  X  |  C  |  V  |  B   ||
+        //  R4 |to DEF|ADJ |  M  |  N  | TAB | SPC | RSE  ||
+        //  R5 |  -  |  -  |  -  |  -  |  J  |  I  |  -   ||
+        // ============================================================
+        gaming_layer {
+            bindings = <
+&kp ESC   &kp N1    &kp N2    &kp N3    &kp N4    &kp N5    &kp N6              &trans      &trans    &trans    &trans    &trans    &trans    &trans
+&none     &kp TAB   &kp Q     &kp W     &kp E     &kp R     &kp T               &trans      &trans    &trans    &trans    &trans    &trans    &trans
+&none     &kp LSHFT &kp A     &kp S     &kp D     &kp F     &kp G               &trans      &trans    &trans    &trans    &trans    &trans    &trans
+&none     &kp LCTRL &kp Z     &kp X     &kp C     &kp V     &kp B               &trans      &trans    &trans    &trans    &trans    &trans    &trans
+&to DEF   &mo ADJ   &kp M     &kp N     &kp TAB   &kp SPACE &mo RSE             &trans      &trans    &trans    &trans    &trans    &trans    &trans
+&none     &none     &none     &none     &kp J     &kp I     &none               &none       &trans    &trans    &none     &none     &none     &none
             >;
         };
     };
