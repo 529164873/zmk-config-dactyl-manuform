@@ -26,6 +26,7 @@
 #define VDESK_R  LC(LG(RIGHT))   // Ctrl+Win+Right  (next virtual desktop)
 #define SNIP     LG(LS(S))       // Win+Shift+S     (snipping tool)
 #define TASKMGR  LC(LS(ESC))     // Ctrl+Shift+Esc  (task manager)
+#define SAVE     LC(S)           // Ctrl+S          (generic save)
 
 / {
     keymap {
@@ -33,21 +34,21 @@
 
         // ============================================================
         //  DEFAULT (Dvorak)
-        //  R0 | GRV | 1   | 2   | 3   | 4   | 5   | 6      ||   7      | 8   | 9   | 0   | [   | ]   | BSPC |
-        //  R1 |PG_UP|  '  |  ,  |  .  |  P  |  Y  | VDESK_L|| VDESK_R  |  F  |  G  |  C  |  R  |  L  | HOME |
-        //  R2 |PG_DN|  A  |  O  |  E  |  U  |  I  | LCTRL  || K_APP    |  D  |  H  |  T  |  N  |  S  | END  |
-        //  R3 |  \  |  ;  |  Q  |  J  |  K  |  X  | LSHFT  || RCTRL    |  B  |  M  |  W  |  V  |  Z  |  /   |
-        //  R4 |CAPS | ADJ | UP  |DOWN | TAB | SPC |  RSE   ||  LWR     | SPC | RET | LEFT|RGHT |  -  |  =   |
-        //  R5 |  -  |  -  |  -  |  -  | GUI | ALT |   -    ||   -      | ALT | ESC |  -  |  -  |  -  |  -   |
+        //  R0 |   ESC   |  1  |  2  |  3  |  4  |    5    |   6       ||    7     |    8    |   9   |  0  |  [  |  ]  |  BSPC   |
+        //  R1 | VDESK_L |  '  |  ,  |  .  |  P  |    Y    | PG_UP     ||   HOME   |    F    |   G   |  C  |  R  |  L  | VDESK_R |
+        //  R2 |  CAPS   |  A  |  O  |  E  |  U  |    I    | PG_DN     ||   END    |    D    |   H   |  T  |  N  |  S  |  K_APP  |
+        //  R3 |  LSHFT  |  ;  |  Q  |  J  |  K  |    X    | LSHFT/TAB || SHFT/TAB |    B    |   M   |  W  |  V  |  Z  |  RSHFT  |
+        //  R4 |  LCTRL  | GRV |  \  |  -  |BSPC | LWR/SPC |  ALT      ||    DEL   | RSE/SPC |  RET  |  _  |  =  |  ?  |  RCTRL  |
+        //  R5 |    -    |  -  |  -  |  -  | GUI |   ADJ   |   -       ||    -     |  SAVE   | K_APP |  -  |  -  |  -  |    -    |
         // ============================================================
         default_layer {
             bindings = <
-&kp GRAVE &kp N1    &kp N2    &kp N3    &kp N4    &kp N5    &kp N6              &kp N7      &kp N8    &kp N9    &kp N0    &kp LBKT  &kp RBKT  &kp BSPC
-&kp PG_UP &kp SQT   &kp COMMA &kp DOT   &kp P     &kp Y     &kp VDESK_L         &kp VDESK_R &kp F     &kp G     &kp C     &kp R     &kp L     &kp HOME
-&kp PG_DN &kp A     &kp O     &kp E     &kp U     &kp I     &kp LCTRL           &kp K_APP   &kp D     &kp H     &kp T     &kp N     &kp S     &kp END
-&kp BSLH  &kp SEMI  &kp Q     &kp J     &kp K     &kp X     &kp LSHFT           &kp RCTRL   &kp B     &kp M     &kp W     &kp V     &kp Z     &kp FSLH
-&kp CAPS  &mo ADJ   &kp UP    &kp DOWN  &kp BSPC  &kp SPACE &mo RSE             &mo LWR     &kp SPACE &kp RET   &kp LEFT  &kp RIGHT &kp MINUS &kp EQUAL
-&none     &none     &none     &none     &kp LGUI  &kp TAB   &none               &none       &kp LALT  &kp ESC   &none     &none     &none     &none
+&kp ESC      &kp N1    &kp N2    &kp N3    &kp N4    &kp N5    &kp N6                  &kp N7            &kp N8         &kp N9    &kp N0     &kp LBKT   &kp RBKT   &kp BSPC
+&kp VDESK_L  &kp SQT   &kp COMMA &kp DOT   &kp P     &kp Y     &kp PG_UP               &kp HOME          &kp F          &kp G     &kp C      &kp R      &kp L      &kp VDESK_R
+&kp CAPS     &kp A     &kp O     &kp E     &kp U     &kp I     &kp PG_DN               &kp END           &kp D          &kp H     &kp T      &kp N      &kp S      &kp K_APP
+&kp LSHFT    &kp SEMI  &kp Q     &kp J     &kp K     &kp X     &mt LSHFT TAB           &mt RSHFT TAB     &kp B          &kp M     &kp W      &kp V      &kp Z      &kp RSHFT
+&kp LCTRL    &kp GRAVE &kp BSLH  &kp MINUS &kp BSPC  &lt LWR SPACE &kp LALT            &kp DEL           &lt RSE SPACE  &kp RET   &kp UNDER  &kp EQUAL  &kp QMARK  &kp RCTRL
+&none        &none     &none     &none     &kp LGUI  &mo ADJ   &none                   &none             &kp SAVE       &kp K_APP &none      &none      &none      &none
             >;
         };
 
@@ -73,21 +74,21 @@
 
         // ============================================================
         //  RAISE  -  function keys, system shortcuts, media
-        //  R0 |  -  | F1  | F2  | F3  | F4  | F5  | F6  ||  F7 | F8  | F9  | F10 | F11 | F12 | DEL  |
-        //  R1 |  -  |  -  |  -  | CALC|  -  |  -  |  -  ||  -  |  -  |  -  | CALC|  -  |  -  | C_PP |
-        //  R2 |  -  |  -  |  -  | SNIP|  -  |  -  |  -  ||  -  |  -  |  -  | SNIP|VOLU |  -  |C_STOP|
-        //  R3 |  -  |  -  |  -  | TMGR|  -  |  -  |  -  ||  -  |  -  |  -  | TMGR|VOLD |  -  |C_PREV|
-        //  R4 |  -  |  -  |  -  |  -  |  -  |  -  |  -  ||  -  |  -  |  -  |  -  |  -  |  -  |C_NEXT|
-        //  R5 |     |     |     |     |  -  |  -  |     ||     |  -  |  -  |     |     |     |     |
+        //  R0 |  -  | F1  | F2  | F3  | F4  | F5  | F6  ||  F7 | F8  | F9  | F10  |   F11  |   F12  |   DEL  |
+        //  R1 |  -  |  -  |  -  |  -  |  -  |  -  |  -  ||  -  |  -  |  -  |   -  |   -    |    -   |    -   |
+        //  R2 |  -  |  -  |  -  |  -  |  -  |  -  |  -  ||  -  |  -  |  -  | VOLD |  VOLU  |    -   |    -   |
+        //  R3 |  -  | CALC| SNIP| TMGR|  -  |  -  |  -  ||  -  |  -  |  -  | C_PP | C_STOP | C_PREV | C_NEXT |
+        //  R4 |  -  |  -  |  -  |  -  |  -  |  -  |  -  ||  -  |  -  |  -  |   -  |    -   |    -   |    -   |
+        //  R5 |     |     |     |     |  -  |  -  |     ||     |  -  |  -  |      |        |        |    -   |
         // ============================================================
         raise_layer {
             bindings = <
-&trans  &kp F1  &kp F2  &kp F3                &kp F4  &kp F5  &kp F6              &kp F7  &kp F8  &kp F9  &kp F10                &kp F11        &kp F12  &kp DEL
-&trans  &trans  &trans  &kp C_AL_CALCULATOR   &trans  &trans  &trans              &trans  &trans  &trans  &kp C_AL_CALCULATOR    &trans         &trans   &kp C_PP
-&trans  &trans  &trans  &kp SNIP              &trans  &trans  &trans              &trans  &trans  &trans  &kp SNIP               &kp C_VOL_UP   &trans   &kp C_STOP
-&trans  &trans  &trans  &kp TASKMGR           &trans  &trans  &trans              &trans  &trans  &trans  &kp TASKMGR            &kp C_VOL_DN   &trans   &kp C_PREV
-&trans  &trans  &trans  &trans                &trans  &trans  &trans              &trans  &trans  &trans  &trans                 &trans         &trans   &kp C_NEXT
-&none   &none   &none   &none                 &trans  &trans  &none               &none   &trans  &trans  &none                  &none          &none    &none
+&trans  &kp F1     &kp F2     &kp F3       &kp F4   &kp F5  &kp F6              &kp F7  &kp F8  &kp F9  &kp F10        &kp F11        &kp F12      &kp DEL
+&trans  &trans     &trans     &trans       &trans   &trans  &trans              &trans  &trans  &trans  &trans         &trans         &trans       &trans
+&trans  &trans     &trans     &trans       &trans   &trans  &trans              &trans  &trans  &trans  &kp C_VOL_DN   &kp C_VOL_UP   &trans       &trans
+&trans  &kp C_AL_CALCULATOR  &kp SNIP  &kp TASKMGR  &trans  &trans  &trans      &trans  &trans  &trans  &kp C_PP       &kp C_STOP     &kp C_PREV   &kp C_NEXT
+&trans  &trans     &trans     &trans       &trans   &trans  &trans              &trans  &trans  &trans  &trans         &trans         &trans       &trans
+&none   &none      &none      &none        &trans   &trans  &none               &none   &trans  &trans  &none          &none          &none        &none
             >;
         };
 
@@ -131,23 +132,24 @@
         };
 
         // ============================================================
-        //  GAMING  -  Azeron-style left-hand cluster.
-        //  WASD diamond: W=R1C3, A=R2C2, S=R2C3, D=R2C4. Right half = trans.
-        //  R0 | ESC |  1  |  2  |  3  |  4  |  5  |  6   ||
-        //  R1 |  -  | TAB |  Q  |  W  |  E  |  R  |  T   ||
-        //  R2 |  -  |LSHFT|  A  |  S  |  D  |  F  |  G   ||
-        //  R3 |  -  |LCTRL|  Z  |  X  |  C  |  V  |  B   ||
-        //  R4 |to DEF|ADJ |  M  |  N  | TAB | SPC | ALT  ||
-        //  R5 |  -  |  -  |  -  |  -  |  J  |  I  |  -   ||
+        //  GAMING  -  Azeron-style left-hand cluster. Right half = trans.
+        //  WASD diamond: W=R1C3, A=R2C2, S=R2C3, D=R2C4.
+        //  Number row shifted right so 1..5 sit directly above Q W E R T.
+        //  R0 | ESC  | GRV |  1  |  2  |  3  |    4    |  5   ||
+        //  R1 |to DEF| TAB |  Q  |  W  |  E  |    R    |  T   ||
+        //  R2 |  -   |LSHFT|  A  |  S  |  D  |    F    |  G   ||
+        //  R3 |  -   |LCTRL|  Z  |  X  |  C  |    V    |  B   ||
+        //  R4 |  -   | ADJ |  M  |  N  | TAB | LWR/SPC | RSE  ||
+        //  R5 |  -   |  -  |  -  |  -  |  J  |   ALT   |  -   ||
         // ============================================================
         gaming_layer {
             bindings = <
-&kp ESC   &kp N1    &kp N2    &kp N3    &kp N4    &kp N5    &kp N6              &trans      &trans    &trans    &trans    &trans    &trans    &trans
-&none     &kp TAB   &kp Q     &kp W     &kp E     &kp R     &kp T               &trans      &trans    &trans    &trans    &trans    &trans    &trans
+&kp ESC   &kp GRAVE &kp N1    &kp N2    &kp N3    &kp N4    &kp N5              &trans      &trans    &trans    &trans    &trans    &trans    &trans
+&to DEF   &kp TAB   &kp Q     &kp W     &kp E     &kp R     &kp T               &trans      &trans    &trans    &trans    &trans    &trans    &trans
 &none     &kp LSHFT &kp A     &kp S     &kp D     &kp F     &kp G               &trans      &trans    &trans    &trans    &trans    &trans    &trans
 &none     &kp LCTRL &kp Z     &kp X     &kp C     &kp V     &kp B               &trans      &trans    &trans    &trans    &trans    &trans    &trans
-&to DEF   &mo ADJ   &kp M     &kp N     &kp TAB   &kp SPACE &mo RSE             &trans      &trans    &trans    &trans    &trans    &trans    &trans
-&none     &none     &none     &none     &kp J     &kp I     &none               &none       &trans    &trans    &none     &none     &none     &none
+&none     &mo ADJ   &kp M     &kp N     &kp TAB   &lt LWR SPACE &mo RSE             &trans      &trans    &trans    &trans    &trans    &trans    &trans
+&none     &none     &none     &none     &kp J     &kp LALT  &none               &none       &trans    &trans    &none     &none     &none     &none
             >;
         };
     };
